@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Auth Test</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-auth-compat.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Google Auth Test</h1>
+  <p>This page tests if Google Authentication is working correctly with your Firebase configuration.</p>
+  
+  <button id="googleSignIn">Sign in with Google</button>
+  <button id="checkUser">Check Current User</button>
+  <button id="signOut">Sign Out</button>
+  
+  <div class="result">
+    <h3>Results:</h3>
+    <pre id="output">Click a button to see results...</pre>
+  </div>
+
+  <script>
+    // Firebase configuration from your project
+    const firebaseConfig = {
+      apiKey: "AIzaSyBzJw9sLxQlWD52UlBUdANdQu-xqCJ2z8Y",
+      authDomain: "guidmenext-d65a9.firebaseapp.com",
+      projectId: "guidmenext-d65a9",
+      storageBucket: "guidmenext-d65a9.firebasestorage.app",
+      messagingSenderId: "948814752784",
+      appId: "1:948814752784:web:9f30062ca321f493526e95",
+      measurementId: "G-J4SVYK5YHC"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    
+    // Get output element
+    const output = document.getElementById('output');
+    
+    // Log to screen
+    function log(message, obj = null) {
+      const timestamp = new Date().toLocaleTimeString();
+      if (obj) {
+        console.log(message, obj);
+        output.textContent += `[${timestamp}] ${message}\n${JSON.stringify(obj, null, 2)}\n\n`;
+      } else {
+        console.log(message);
+        output.textContent += `[${timestamp}] ${message}\n\n`;
+      }
+      
+      // Scroll to bottom
+      output.scrollTop = output.scrollHeight;
+    }
+    
+    // Clear output
+    function clearOutput() {
+      output.textContent = '';
+    }
+
+    // Sign in with Google
+    document.getElementById('googleSignIn').addEventListener('click', function() {
+      clearOutput();
+      log('Starting Google sign-in...');
+      
+      const provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      
+      // Using popup for testing (more reliable in test scenario)
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          log('Google sign-in successful!');
+          log('User credentials:', {
+            displayName: result.user.displayName,
+            email: result.user.email,
+            uid: result.user.uid,
+            photoURL: result.user.photoURL
+          });
+        })
+        .catch((error) => {
+          log('Google sign-in error:', {
+            code: error.code,
+            message: error.message,
+            email: error.email,
+            credential: error.credential ? 'Present' : 'None'
+          });
+        });
+    });
+
+    // Check current user
+    document.getElementById('checkUser').addEventListener('click', function() {
+      clearOutput();
+      const user = firebase.auth().currentUser;
+      
+      if (user) {
+        log('Current user:', {
+          displayName: user.displayName,
+          email: user.email,
+          uid: user.uid,
+          photoURL: user.photoURL,
+          emailVerified: user.emailVerified,
+          providerId: user.providerData[0].providerId
+        });
+      } else {
+        log('No user is currently signed in.');
+      }
+    });
+
+    // Sign out
+    document.getElementById('signOut').addEventListener('click', function() {
+      clearOutput();
+      firebase.auth().signOut()
+        .then(() => {
+          log('User signed out successfully.');
+        })
+        .catch((error) => {
+          log('Error signing out:', error);
+        });
+    });
+
+    // Listen for auth state changes
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        log('Auth state changed: User is signed in', {
+          displayName: user.displayName,
+          email: user.email,
+          uid: user.uid
+        });
+      } else {
+        log('Auth state changed: User is signed out');
+      }
+    });
+  </script>
+</body>
+</html>

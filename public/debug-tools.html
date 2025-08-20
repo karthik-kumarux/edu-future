@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduFuture - Debug Tools</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore-compat.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #4285F4;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    button:hover {
+      background-color: #3367D6;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      color: #333;
+    }
+    .tab button:hover {
+      background-color: #ddd;
+    }
+    .tab button.active {
+      background-color: #4285F4;
+      color: white;
+    }
+    .tabcontent {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    input, select {
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>EduFuture - Debug Tools</h1>
+  <p>This page contains tools to help debug and fix issues with your application.</p>
+  
+  <div class="tab">
+    <button class="tablinks active" onclick="openTab(event, 'Auth')">Authentication</button>
+    <button class="tablinks" onclick="openTab(event, 'Database')">Database</button>
+    <button class="tablinks" onclick="openTab(event, 'Troubleshoot')">Troubleshooting</button>
+  </div>
+  
+  <div id="Auth" class="tabcontent" style="display:block;">
+    <div class="card">
+      <h2>Google Authentication</h2>
+      <p>Test and fix Google authentication issues.</p>
+      <button id="googleSignIn">Sign in with Google</button>
+      <button id="googleSignOut">Sign Out</button>
+      <button id="checkAuth">Check Auth State</button>
+      <pre id="authOutput">Results will appear here...</pre>
+    </div>
+    
+    <div class="card">
+      <h2>Create User in Firestore</h2>
+      <p>Manually create a user document in Firestore after successful Google authentication.</p>
+      <div class="form-group">
+        <label for="userId">User ID (from Google Auth):</label>
+        <input type="text" id="userId" placeholder="Enter user ID">
+      </div>
+      <div class="form-group">
+        <label for="userEmail">Email:</label>
+        <input type="email" id="userEmail" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" placeholder="Enter first name">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" placeholder="Enter last name">
+      </div>
+      <button id="createUserDoc">Create User Document</button>
+      <pre id="createOutput">Results will appear here...</pre>
+    </div>
+  </div>
+  
+  <div id="Database" class="tabcontent">
+    <div class="card">
+      <h2>Check User Document</h2>
+      <p>Check if a user document exists in Firestore.</p>
+      <div class="form-group">
+        <label for="checkUserId">User ID:</label>
+        <input type="text" id="checkUserId" placeholder="Enter user ID to check">
+      </div>
+      <button id="checkUserDoc">Check User Document</button>
+      <pre id="checkOutput">Results will appear here...</pre>
+    </div>
+  </div>
+  
+  <div id="Troubleshoot" class="tabcontent">
+    <div class="card">
+      <h2>Clear Auth State</h2>
+      <p>Clear any stored authentication state that might be causing issues.</p>
+      <button id="clearState">Clear Stored State</button>
+      <pre id="clearOutput">Results will appear here...</pre>
+    </div>
+    
+    <div class="card">
+      <h2>Browser Information</h2>
+      <pre id="browserInfo">Loading browser information...</pre>
+    </div>
+  </div>
+
+  <script>
+    // Firebase configuration from your project
+    const firebaseConfig = {
+      apiKey: "AIzaSyBzJw9sLxQlWD52UlBUdANdQu-xqCJ2z8Y",
+      authDomain: "guidmenext-d65a9.firebaseapp.com",
+      projectId: "guidmenext-d65a9",
+      storageBucket: "guidmenext-d65a9.firebasestorage.app",
+      messagingSenderId: "948814752784",
+      appId: "1:948814752784:web:9f30062ca321f493526e95",
+      measurementId: "G-J4SVYK5YHC"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    
+    // Get output elements
+    const authOutput = document.getElementById('authOutput');
+    const createOutput = document.getElementById('createOutput');
+    const checkOutput = document.getElementById('checkOutput');
+    const clearOutput = document.getElementById('clearOutput');
+    const browserInfo = document.getElementById('browserInfo');
+    
+    // Log to a specific output element
+    function logTo(element, message, obj = null) {
+      const timestamp = new Date().toLocaleTimeString();
+      if (obj) {
+        console.log(message, obj);
+        element.textContent += `[${timestamp}] ${message}\n${JSON.stringify(obj, null, 2)}\n\n`;
+      } else {
+        console.log(message);
+        element.textContent += `[${timestamp}] ${message}\n\n`;
+      }
+      
+      // Scroll to bottom
+      element.scrollTop = element.scrollHeight;
+    }
+    
+    // Clear specific output
+    function clearElement(element) {
+      element.textContent = '';
+    }
+
+    // Sign in with Google
+    document.getElementById('googleSignIn').addEventListener('click', function() {
+      clearElement(authOutput);
+      logTo(authOutput, 'Starting Google sign-in...');
+      
+      const provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          logTo(authOutput, 'Google sign-in successful!');
+          logTo(authOutput, 'User credentials:', {
+            displayName: result.user.displayName,
+            email: result.user.email,
+            uid: result.user.uid,
+            photoURL: result.user.photoURL
+          });
+          
+          // Auto-fill the create user form
+          document.getElementById('userId').value = result.user.uid;
+          document.getElementById('userEmail').value = result.user.email;
+          
+          if (result.user.displayName) {
+            const nameParts = result.user.displayName.split(' ');
+            document.getElementById('firstName').value = nameParts[0] || '';
+            document.getElementById('lastName').value = nameParts.slice(1).join(' ') || '';
+          }
+        })
+        .catch((error) => {
+          logTo(authOutput, 'Google sign-in error:', {
+            code: error.code,
+            message: error.message,
+            email: error.email,
+            credential: error.credential ? 'Present' : 'None'
+          });
+        });
+    });
+
+    // Sign out
+    document.getElementById('googleSignOut').addEventListener('click', function() {
+      clearElement(authOutput);
+      firebase.auth().signOut()
+        .then(() => {
+          logTo(authOutput, 'User signed out successfully.');
+        })
+        .catch((error) => {
+          logTo(authOutput, 'Error signing out:', error);
+        });
+    });
+
+    // Check auth state
+    document.getElementById('checkAuth').addEventListener('click', function() {
+      clearElement(authOutput);
+      const user = firebase.auth().currentUser;
+      
+      if (user) {
+        logTo(authOutput, 'Current user:', {
+          displayName: user.displayName,
+          email: user.email,
+          uid: user.uid,
+          photoURL: user.photoURL,
+          emailVerified: user.emailVerified,
+          providerId: user.providerData[0].providerId
+        });
+      } else {
+        logTo(authOutput, 'No user is currently signed in.');
+      }
+    });
+
+    // Create user document
+    document.getElementById('createUserDoc').addEventListener('click', function() {
+      clearElement(createOutput);
+      
+      const userId = document.getElementById('userId').value;
+      const email = document.getElementById('userEmail').value;
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      
+      if (!userId || !email) {
+        logTo(createOutput, 'Error: User ID and Email are required.');
+        return;
+      }
+      
+      const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        createdAt: new Date().toISOString(),
+        providerId: 'google.com',
+        verifiedByOtp: false
+      };
+      
+      logTo(createOutput, 'Creating user document with data:', userData);
+      
+      firebase.firestore().collection('users').doc(userId).set(userData)
+        .then(() => {
+          logTo(createOutput, 'User document created successfully!');
+          logTo(createOutput, 'You can now return to the main app and login with Google.');
+        })
+        .catch((error) => {
+          logTo(createOutput, 'Error creating user document:', error);
+        });
+    });
+
+    // Check user document
+    document.getElementById('checkUserDoc').addEventListener('click', function() {
+      clearElement(checkOutput);
+      
+      const userId = document.getElementById('checkUserId').value;
+      
+      if (!userId) {
+        logTo(checkOutput, 'Error: User ID is required.');
+        return;
+      }
+      
+      logTo(checkOutput, `Checking for user document with ID: ${userId}`);
+      
+      firebase.firestore().collection('users').doc(userId).get()
+        .then((doc) => {
+          if (doc.exists) {
+            logTo(checkOutput, 'User document found:', doc.data());
+          } else {
+            logTo(checkOutput, 'No user document found with this ID.');
+          }
+        })
+        .catch((error) => {
+          logTo(checkOutput, 'Error checking user document:', error);
+        });
+    });
+
+    // Clear stored state
+    document.getElementById('clearState').addEventListener('click', function() {
+      clearElement(clearOutput);
+      
+      try {
+        // Clear localStorage items related to authentication
+        localStorage.removeItem('googleAuthInProgress');
+        localStorage.removeItem('googleAuthStartTime');
+        localStorage.removeItem('googleUserData');
+        localStorage.removeItem('pendingOtpEmail');
+        localStorage.removeItem('route_state_/verify-otp');
+        
+        // Clear indexedDB storage for Firebase Auth
+        window.indexedDB.deleteDatabase('firebaseLocalStorageDb');
+        
+        logTo(clearOutput, 'Auth state cleared successfully.');
+        logTo(clearOutput, 'Please refresh the page and try signing in again.');
+      } catch (error) {
+        logTo(clearOutput, 'Error clearing auth state:', error);
+      }
+    });
+
+    // Display browser information
+    function showBrowserInfo() {
+      const info = {
+        userAgent: navigator.userAgent,
+        platform: navigator.platform,
+        language: navigator.language,
+        cookiesEnabled: navigator.cookieEnabled,
+        localStorage: typeof localStorage !== 'undefined',
+        sessionStorage: typeof sessionStorage !== 'undefined',
+        indexedDB: typeof indexedDB !== 'undefined',
+        online: navigator.onLine
+      };
+      
+      browserInfo.textContent = JSON.stringify(info, null, 2);
+    }
+    
+    showBrowserInfo();
+
+    // Tab functionality
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Listen for auth state changes
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        logTo(authOutput, 'Auth state changed: User is signed in', {
+          displayName: user.displayName,
+          email: user.email,
+          uid: user.uid
+        });
+        
+        // Auto-fill check user ID field
+        document.getElementById('checkUserId').value = user.uid;
+      } else {
+        logTo(authOutput, 'Auth state changed: User is signed out');
+      }
+    });
+  </script>
+</body>
+</html>
