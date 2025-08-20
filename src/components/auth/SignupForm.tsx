@@ -169,7 +169,8 @@ export default function SignupForm() {
       
       // Set custom parameters to force account selection
       provider.setCustomParameters({
-        prompt: 'select_account'
+        prompt: 'select_account',
+        client_id: '948814752784-3son1qfpo12ffv40b6r95os22ededg1e.apps.googleusercontent.com'
       });
       
       console.log("Starting Google sign-in with enhanced mode...");

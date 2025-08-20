@@ -215,6 +215,10 @@
       const provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
+      provider.setCustomParameters({
+        prompt: 'select_account',
+        client_id: '948814752784-3son1qfpo12ffv40b6r95os22ededg1e.apps.googleusercontent.com'
+      });
       
       firebase.auth().signInWithPopup(provider)
         .then((result) => {
