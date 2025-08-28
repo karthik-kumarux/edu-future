@@ -1,0 +1,149 @@
+[debug] [2025-08-28T17:37:08.699Z] ----------------------------------------------------------------------
+[debug] [2025-08-28T17:37:08.701Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\karth\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2025-08-28T17:37:08.701Z] CLI Version:   14.13.0
+[debug] [2025-08-28T17:37:08.701Z] Platform:      win32
+[debug] [2025-08-28T17:37:08.701Z] Node Version:  v22.16.0
+[debug] [2025-08-28T17:37:08.701Z] Time:          Thu Aug 28 2025 23:07:08 GMT+0530 (India Standard Time)
+[debug] [2025-08-28T17:37:08.701Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-08-28T17:37:08.840Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-28T17:37:08.841Z] > authorizing via signed-in user (guidmenext5@gmail.com)
+[debug] [2025-08-28T17:37:08.841Z] [iam] checking project guidmenext-d65a9 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-08-28T17:37:08.842Z] Checked if tokens are valid: false, expires at: 1756387682628
+[debug] [2025-08-28T17:37:08.842Z] Checked if tokens are valid: false, expires at: 1756387682628
+[debug] [2025-08-28T17:37:08.842Z] > refreshing access token with scopes: []
+[debug] [2025-08-28T17:37:08.844Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-28T17:37:08.844Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-28T17:37:09.192Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-28T17:37:09.192Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-28T17:37:09.231Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9:testIamPermissions [none]
+[debug] [2025-08-28T17:37:09.231Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9:testIamPermissions x-goog-quota-user=projects/guidmenext-d65a9
+[debug] [2025-08-28T17:37:09.231Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-08-28T17:37:10.826Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9:testIamPermissions 200
+[debug] [2025-08-28T17:37:10.826Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-08-28T17:37:10.827Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:10.827Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:10.827Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/guidmenext-d65a9/serviceAccounts/guidmenext-d65a9@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-08-28T17:37:10.828Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/guidmenext-d65a9/serviceAccounts/guidmenext-d65a9@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-08-28T17:37:12.673Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/guidmenext-d65a9/serviceAccounts/guidmenext-d65a9@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-08-28T17:37:12.673Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/guidmenext-d65a9/serviceAccounts/guidmenext-d65a9@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'guidmenext-d65a9'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] +  functions: Finished running predeploy script. 
+[debug] [2025-08-28T17:37:17.352Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:17.352Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:17.353Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9 [none]
+[debug] [2025-08-28T17:37:18.920Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9 200
+[debug] [2025-08-28T17:37:18.920Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9 {"projectNumber":"948814752784","projectId":"guidmenext-d65a9","lifecycleState":"ACTIVE","name":"guidmenext","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-06-12T06:59:38.789184Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-08-28T17:37:18.926Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:18.926Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:18.926Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/guidmenext-d65a9/adminSdkConfig [none]
+[debug] [2025-08-28T17:37:20.045Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/guidmenext-d65a9/adminSdkConfig 200
+[debug] [2025-08-28T17:37:20.045Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/guidmenext-d65a9/adminSdkConfig {"projectId":"guidmenext-d65a9","storageBucket":"guidmenext-d65a9.firebasestorage.app"}
+[debug] [2025-08-28T17:37:20.045Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:20.046Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:20.046Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/guidmenext-d65a9/configs [none]
+[debug] [2025-08-28T17:37:20.765Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/guidmenext-d65a9/configs 200
+[debug] [2025-08-28T17:37:20.765Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/guidmenext-d65a9/configs {}
+[debug] [2025-08-28T17:37:20.767Z] Validating nodejs source
+[warn] !  functions: Runtime Node.js 18 was deprecated on 2025-04-30 and will be decommissioned on 2025-10-30, after which you will not be able to deploy without upgrading. Consider upgrading now to avoid disruption. See https://cloud.google.com/functions/docs/runtime-support for full details on the lifecycle policy 
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2025-08-28T17:37:21.625Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "echo 'Skipping lint step...'",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "firebase-admin": "^11.11.1",
+    "firebase-functions": "^4.5.0",
+    "nodemailer": "^7.0.3",
+    "uuid": "^9.0.0",
+    "path": "^0.12.7",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "typescript": "^5.7.3"
+  },
+  "private": true
+}
+[debug] [2025-08-28T17:37:21.625Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[info] i  functions: You are using a version of firebase-functions SDK (4.5.0) that does not have support for the newest Firebase Extensions features. Please update firebase-functions SDK to >=5.1.0 to use them correctly 
+[debug] [2025-08-28T17:37:21.627Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-08-28T17:37:21.633Z] Found firebase-functions binary at 'D:\edu-future\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8281
+
+[debug] [2025-08-28T17:37:22.216Z] Got response from /__/functions.yaml {"endpoints":{"sendLoginOtp":{"platform":"gcfv1","labels":{},"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"region":["us-central1"],"callableTrigger":{},"entryPoint":"sendLoginOtp"},"verifyOtp":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"region":["us-central1"],"httpsTrigger":{},"entryPoint":"verifyOtp"},"fetchAndPostJobs":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"region":["us-central1"],"httpsTrigger":{},"entryPoint":"fetchAndPostJobs"},"onSendEmail":{"platform":"gcfv1","labels":{},"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"region":["us-central1"],"callableTrigger":{},"entryPoint":"onSendEmail"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged D:\edu-future\functions (74.45 KB) for uploading 
+[debug] [2025-08-28T17:37:26.325Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:26.325Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:26.326Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/guidmenext-d65a9/locations/-/functions [none]
+[debug] [2025-08-28T17:37:27.418Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/guidmenext-d65a9/locations/-/functions 200
+[debug] [2025-08-28T17:37:27.418Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/guidmenext-d65a9/locations/-/functions {"functions":[{"name":"projects/guidmenext-d65a9/locations/us-central1/functions/fetchAndPostJobs","httpsTrigger":{"url":"https://us-central1-guidmenext-d65a9.cloudfunctions.net/fetchAndPostJobs","securityLevel":"SECURE_ALWAYS"},"status":"ACTIVE","entryPoint":"fetchAndPostJobs","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"guidmenext-d65a9@appspot.gserviceaccount.com","updateTime":"2025-08-28T12:32:10.017Z","versionId":"10","labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d1da8d569f707db7c823522af0fec8e3708c0984"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/50a24e1b-59e7-487c-b512-954107c6a0b4.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"guidmenext-d65a9\",\"storageBucket\":\"guidmenext-d65a9.firebasestorage.app\"}","GCLOUD_PROJECT":"guidmenext-d65a9","EVENTARC_CLOUD_EVENT_SOURCE":"projects/guidmenext-d65a9/locations/us-central1/functions/fetchAndPostJobs"},"runtime":"nodejs18","ingressSettings":"ALLOW_ALL","buildId":"c8a1e53b-ba93-411b-b186-4b6212b1bd6c","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/948814752784/locations/us-central1/builds/c8a1e53b-ba93-411b-b186-4b6212b1bd6c","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{},"buildServiceAccount":"projects/guidmenext-d65a9/serviceAccounts/948814752784-compute@developer.gserviceaccount.com","satisfiesPzi":true},{"name":"projects/guidmenext-d65a9/locations/us-central1/functions/onSendEmail","httpsTrigger":{"url":"https://us-central1-guidmenext-d65a9.cloudfunctions.net/onSendEmail","securityLevel":"SECURE_ALWAYS"},"status":"ACTIVE","entryPoint":"onSendEmail","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"guidmenext-d65a9@appspot.gserviceaccount.com","updateTime":"2025-08-28T12:32:09.216Z","versionId":"2","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"d1da8d569f707db7c823522af0fec8e3708c0984"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/50a24e1b-59e7-487c-b512-954107c6a0b4.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"guidmenext-d65a9\",\"storageBucket\":\"guidmenext-d65a9.firebasestorage.app\"}","GCLOUD_PROJECT":"guidmenext-d65a9","EVENTARC_CLOUD_EVENT_SOURCE":"projects/guidmenext-d65a9/locations/us-central1/functions/onSendEmail"},"runtime":"nodejs18","ingressSettings":"ALLOW_ALL","buildId":"c8a1e53b-ba93-411b-b186-4b6212b1bd6c","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/948814752784/locations/us-central1/builds/c8a1e53b-ba93-411b-b186-4b6212b1bd6c","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{},"buildServiceAccount":"projects/guidmenext-d65a9/serviceAccounts/948814752784-compute@developer.gserviceaccount.com","satisfiesPzi":true},{"name":"projects/guidmenext-d65a9/locations/us-central1/functions/verifyOtp","httpsTrigger":{"url":"https://us-central1-guidmenext-d65a9.cloudfunctions.net/verifyOtp","securityLevel":"SECURE_ALWAYS"},"status":"ACTIVE","entryPoint":"verifyOtp","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"guidmenext-d65a9@appspot.gserviceaccount.com","updateTime":"2025-08-28T12:32:03.433Z","versionId":"17","labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d1da8d569f707db7c823522af0fec8e3708c0984"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/50a24e1b-59e7-487c-b512-954107c6a0b4.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"guidmenext-d65a9\",\"storageBucket\":\"guidmenext-d65a9.firebasestorage.app\"}","GCLOUD_PROJECT":"guidmenext-d65a9","EVENTARC_CLOUD_EVENT_SOURCE":"projects/guidmenext-d65a9/locations/us-central1/functions/verifyOtp"},"runtime":"nodejs18","ingressSettings":"ALLOW_ALL","buildId":"c8a1e53b-ba93-411b-b186-4b6212b1bd6c","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/948814752784/locations/us-central1/builds/c8a1e53b-ba93-411b-b186-4b6212b1bd6c","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{},"buildServiceAccount":"projects/guidmenext-d65a9/serviceAccounts/948814752784-compute@developer.gserviceaccount.com","satisfiesPzi":true},{"name":"projects/guidmenext-d65a9/locations/us-central1/functions/sendSignupOtp","httpsTrigger":{"url":"https://us-central1-guidmenext-d65a9.cloudfunctions.net/sendSignupOtp","securityLevel":"SECURE_ALWAYS"},"status":"ACTIVE","entryPoint":"sendSignupOtp","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"guidmenext-d65a9@appspot.gserviceaccount.com","updateTime":"2025-08-28T12:31:59.155993892Z","versionId":"1","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"d1da8d569f707db7c823522af0fec8e3708c0984"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/50a24e1b-59e7-487c-b512-954107c6a0b4.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"guidmenext-d65a9\",\"storageBucket\":\"guidmenext-d65a9.firebasestorage.app\"}","GCLOUD_PROJECT":"guidmenext-d65a9","EVENTARC_CLOUD_EVENT_SOURCE":"projects/guidmenext-d65a9/locations/us-central1/functions/sendSignupOtp"},"runtime":"nodejs18","ingressSettings":"ALLOW_ALL","buildId":"c8a1e53b-ba93-411b-b186-4b6212b1bd6c","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/948814752784/locations/us-central1/builds/c8a1e53b-ba93-411b-b186-4b6212b1bd6c","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{},"buildServiceAccount":"projects/guidmenext-d65a9/serviceAccounts/948814752784-compute@developer.gserviceaccount.com","satisfiesPzi":true},{"name":"projects/guidmenext-d65a9/locations/us-central1/functions/sendLoginOtp","httpsTrigger":{"url":"https://us-central1-guidmenext-d65a9.cloudfunctions.net/sendLoginOtp","securityLevel":"SECURE_ALWAYS"},"status":"ACTIVE","entryPoint":"sendLoginOtp","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"guidmenext-d65a9@appspot.gserviceaccount.com","updateTime":"2025-08-28T12:32:03.512Z","versionId":"18","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"d1da8d569f707db7c823522af0fec8e3708c0984"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/50a24e1b-59e7-487c-b512-954107c6a0b4.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"guidmenext-d65a9\",\"storageBucket\":\"guidmenext-d65a9.firebasestorage.app\"}","GCLOUD_PROJECT":"guidmenext-d65a9","EVENTARC_CLOUD_EVENT_SOURCE":"projects/guidmenext-d65a9/locations/us-central1/functions/sendLoginOtp"},"runtime":"nodejs18","ingressSettings":"ALLOW_ALL","buildId":"c8a1e53b-ba93-411b-b186-4b6212b1bd6c","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/948814752784/locations/us-central1/builds/c8a1e53b-ba93-411b-b186-4b6212b1bd6c","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{},"buildServiceAccount":"projects/guidmenext-d65a9/serviceAccounts/948814752784-compute@developer.gserviceaccount.com","satisfiesPzi":true}]}
+[debug] [2025-08-28T17:37:27.420Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:27.420Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:27.421Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/guidmenext-d65a9/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2025-08-28T17:37:29.156Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/guidmenext-d65a9/locations/-/functions 200
+[debug] [2025-08-28T17:37:29.157Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/guidmenext-d65a9/locations/-/functions {}
+[debug] [2025-08-28T17:37:29.163Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:29.163Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:29.164Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9 [none]
+[debug] [2025-08-28T17:37:30.693Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9 200
+[debug] [2025-08-28T17:37:30.693Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/guidmenext-d65a9 {"projectNumber":"948814752784","projectId":"guidmenext-d65a9","lifecycleState":"ACTIVE","name":"guidmenext","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-06-12T06:59:38.789184Z"}
+[debug] [2025-08-28T17:37:30.696Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:30.697Z] Checked if tokens are valid: true, expires at: 1756406228192
+[debug] [2025-08-28T17:37:30.697Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/guidmenext-d65a9/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2025-08-28T17:37:30.697Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/guidmenext-d65a9/locations/us-central1/functions:generateUploadUrl {}
+[debug] [2025-08-28T17:37:32.536Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v1/projects/guidmenext-d65a9/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2025-08-28T17:37:32.536Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/guidmenext-d65a9/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/77cc146c-c221-4cc9-9c1a-dd5db355cbcf.zip?GoogleAccessId=service-948814752784@gcf-admin-robot.iam.gserviceaccount.com&Expires=1756404463&Signature=yeCdMmu6n%2Fok%2BATsDcdLbixGARl7s%2BjF7zBR6GvfnBEtpDvJ8gmaAFC49A2M4hwtBJhC9dn0%2FAd8ITJ0Qiney4OltgljC2jJdPj2neZa3Di4osQ915RfD8y4VyFUg9org6Kk8edoItk0BIUt4WJsqwbVjPI%2F3Wn5B9PT8WkXUzjCtTZvZShxmxR2kkjV8vb8SmM5C8Lxs9iaEX%2BNACzE5B0Dc7udXdamKSrarzhaDPzQyMOcHa0qOiQIF4LBUBzd3SNKlM3i2g62CUoSRKTD1kw%2BmaaGFjr9m6DVXzNgVSAm%2BvpyN3fRd67xblO6967RqUluYwY0sIc3IdFSvpkYoA%3D%3D"}
+[debug] [2025-08-28T17:37:32.538Z] >>> [apiv2][query] PUT https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/77cc146c-c221-4cc9-9c1a-dd5db355cbcf.zip GoogleAccessId=service-948814752784%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1756404463&Signature=yeCdMmu6n%2Fok%2BATsDcdLbixGARl7s%2BjF7zBR6GvfnBEtpDvJ8gmaAFC49A2M4hwtBJhC9dn0%2FAd8ITJ0Qiney4OltgljC2jJdPj2neZa3Di4osQ915RfD8y4VyFUg9org6Kk8edoItk0BIUt4WJsqwbVjPI%2F3Wn5B9PT8WkXUzjCtTZvZShxmxR2kkjV8vb8SmM5C8Lxs9iaEX%2BNACzE5B0Dc7udXdamKSrarzhaDPzQyMOcHa0qOiQIF4LBUBzd3SNKlM3i2g62CUoSRKTD1kw%2BmaaGFjr9m6DVXzNgVSAm%2BvpyN3fRd67xblO6967RqUluYwY0sIc3IdFSvpkYoA%3D%3D
+[debug] [2025-08-28T17:37:32.538Z] >>> [apiv2][body] PUT https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/77cc146c-c221-4cc9-9c1a-dd5db355cbcf.zip [stream]
+[debug] [2025-08-28T17:37:34.980Z] <<< [apiv2][status] PUT https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/77cc146c-c221-4cc9-9c1a-dd5db355cbcf.zip 200
+[debug] [2025-08-28T17:37:34.980Z] <<< [apiv2][body] PUT https://storage.googleapis.com/uploads-378070503838.us-central1.cloudfunctions.appspot.com/77cc146c-c221-4cc9-9c1a-dd5db355cbcf.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] 
+The following functions are found in your project but do not exist in your local source code:
+	sendSignupOtp(us-central1)
+
+If you are renaming a function or changing its region, it is recommended that you create the new function first before deleting the old one to prevent event loss. For more info, visit https://firebase.google.com/docs/functions/manage-functions#modify
+
+[debug] [2025-08-28T17:39:20.261Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (C:\Users\karth\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@inquirer\core\dist\commonjs\lib\create-prompt.js:101:37)
+    at Interface.emit (node:events:518:28)
+    at Interface.emit (node:domain:489:12)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1128:18)
+    at ReadStream.onkeypress (node:internal/readline/interface:267:20)
+    at ReadStream.emit (node:events:530:35)
+    at ReadStream.emit (node:domain:489:12)
+    at emitKeys (node:internal/readline/utils:370:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+[error] 
+[error] Error: An unexpected error has occurred.
